@@ -4,18 +4,18 @@ Let's say we have a function f(x).
 
 >Y = f(x) (say)
 
-Now we know that dY/dx is proportional to:
+We know that dY/dx is proportional to:
 
 >f(x+h) - f(x)
 
 Now, what do I exactly mean by 'influential' here? 
 
-By x is 'influential' to f(x), I mean, f(x) changes rather greatly (at least compared to the case where x is less influential) with change in the value of x. 
+By x is 'influential' to f(x), I mean f(x) changes quite a bit with little change in x.
 
-And, x has little 'influence' on f(x), when f(x) barely changes even when x greatly changes. 
+x has little 'influence' on f(x) when f(x) barely changes even when x greatly changes. 
 
 Since dy/dx is basically the measure of change in y or f(x) with respect to a negligible change in x,
-|dy/dx| should usually be greater for cases where x is more influential to f(x).
+|dy/dx| should be greater for cases where x is more 'influential' to f(x).
 
 (Note: I am ignoring the direction of change, and focusing on the magnitude; thus |dy/dx| instead of dy/dx)
 
@@ -55,7 +55,7 @@ By modifying to network function by multiplying the output with some masking mat
 
 I am working on a pre-trained model ([wide-residual-network](https://github.com/JRC1995/Wide-Residual-Network))
 
-The data pre-processing script, the saved models and all else are available here: https://github.com/JRC1995/Wide-Residual-Network
+The data pre-processing script, the saved models and all else are available here: https://github.com/JRC1995/Wide-Residual-Network (inside OLD)
 
 This implementation presented here is basically a toy implementation.
 
@@ -331,7 +331,13 @@ Here are some results:
     Enter relative path to the image: STOP
 
 
+Not much can be said from these results involving low sample size. 
 
+If there are members of different classes in the same picture (say, a member from class 1, and another member from class 2), and if one needs to find the input pixels that are influential in the prediction of members in class 1 only, then a mask can be used over the model's output probability distributition to nullify the values corresponding to other classes - doing so should reduce the gradients of pixels that contributed to the values of other classes. Considering the direction of the gradients may also be important - for example to discover pixels that are likely to be around the objects of class 1, we may need to find pixels with a positive pd(class-1-output-probability)/pd(pixel_values). 
+
+Apparently, there are mathematical works under the term 'sensitivity analysis' which deals with determining the 'influences' of input (or parameters).
+http://in.mathworks.com/help/sldo/ug/what-is-sensitivity-analysis.html
+It seems I am here using 'local sensitivity analysis'. 
 
 
 
