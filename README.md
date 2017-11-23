@@ -336,8 +336,10 @@ Not much can be said from these results involving low sample size.
 If there are members of different classes in the same picture (say, a member from class 1, and another member from class 2), and if one needs to find the input pixels that are influential in the prediction of members in class 1 only, then a mask can be used over the model's output probability distributition to nullify the values corresponding to other classes - doing so should reduce the gradients of pixels that contributed to the values of other classes. Considering the direction of the gradients may also be important - for example to discover pixels that are likely to be around the objects of class 1, we may need to find pixels with a positive pd(class-1-output-probability)/pd(pixel_values). 
 
 Apparently, there are mathematical works under the term 'sensitivity analysis' which deals with determining the 'influences' of input (or parameters).
+
 http://in.mathworks.com/help/sldo/ug/what-is-sensitivity-analysis.html
-It seems I am here using 'local sensitivity analysis'. 
+
+It seems what I am doing here is 'local sensitivity analysis'. 
 
 
 
